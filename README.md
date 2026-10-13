@@ -48,7 +48,7 @@ The look of this site comes from the [Minimal Mistakes](https://github.com/mmist
 | `assets/docs/` | PDFs, including `CV.pdf` (your resume) |
 | `_resume/cv.html` | The HTML source used to make the demo `CV.pdf`. You can edit it to make your own (see Step 5). It isn't published. |
 | `assets/css/main.scss` | Site colors |
-| `.github/workflows/jekyll.yml` | The script GitHub runs to build and publish your site. You don't need to change it. |
+| `Gemfile` | The list of Ruby packages Jekyll needs. It's only used if you preview the site on your own computer. |
 
 Folders whose names start with `_` are Jekyll's own folders. Jekyll reads them while building your site, but it doesn't publish them as folders on the site.
 
@@ -71,15 +71,17 @@ From here on, make every change in **your** copy, not in this template.
 ## Step 2: Turn on GitHub Pages
 
 1. In your new repository, open **Settings** and then **Pages**.
-2. Under **Build and deployment**, set **Source** to **GitHub Actions**. This site is built by the script in `.github/workflows/jekyll.yml`, so don't choose "Deploy from a branch".
-3. Open the **Actions** tab. If no run has started, select **Deploy Jekyll site to Pages** and click **Run workflow**.
-4. When the run shows a green check ✅, your site is live at `https://[yourusername].github.io/[your-repo-name]/`.
+2. Under **Build and deployment**, set **Source** to **Deploy from a branch**.
+3. Under **Branch**, choose `main` and `/ (root)`, then click **Save**.
+4. Open the **Actions** tab. A run called **pages build and deployment** will start. When it shows a green check ✅, your site is live at `https://[yourusername].github.io/[your-repo-name]/`.
 
-From now on, every change you commit to the `master` branch rebuilds the site automatically within a minute or two. If a run shows a red ❌, click it to read the error message. The cause is usually a typo in a `.yml` file.
+The site will look broken (plain text, missing images) until you finish Step 3, because the settings still point at the template's address.
+
+From now on, every change you commit to the `main` branch rebuilds the site automatically within a minute or two. If a run shows a red ❌, click it to read the error message. The cause is usually a typo in a `.yml` file.
 
 ## Step 3: Edit `_config.yml`
 
-On GitHub, open `_config.yml` and click the pencil icon to edit it. Keep the quotation marks around each value. In YAML files the spacing matters too, so don't change the indentation.
+On GitHub, open `_config.yml` and click the pencil icon to edit it. It starts out with this template's own address (`71north.github.io/jekyll-resume-template`), so change these lines to match your account and repository. Keep the quotation marks around each value. In YAML files the spacing matters too, so don't change the indentation.
 
 ```yaml
 title: "Jane Doe"                     # shown in the top-left of every page
@@ -103,7 +105,7 @@ author:
 
 Click **Commit changes**.
 
-> **`baseurl` matters.** Your site lives in a subfolder named after your repository. If `baseurl` doesn't match your repository name exactly, the styling and images on your site will break.
+> **`baseurl` matters.** Your site lives in a subfolder named after your repository. If `baseurl` doesn't match your repository name exactly, the styling and images on your site will break: the page shows up as plain unstyled text, and your browser's developer console lists `404` errors for files like `main.css`. If you rename your repository later, update `baseurl` to match.
 
 ## Step 4: Add your photo and write your home page
 
@@ -191,6 +193,8 @@ Editing on GitHub is enough for everything above. If you want to see changes ins
    bundle exec jekyll serve --livereload
    ```
 3. Open `http://localhost:4000/[your-repo-name]/` in your browser.
+
+Jekyll writes the finished site to a `_site/` folder. That folder is listed in `.gitignore`, so it won't be committed. GitHub builds its own copy when you push.
 
 Pages reload automatically when you save a file. Changes to `_config.yml` are the exception: to see those, stop the server with `Ctrl+C` and start it again.
 
