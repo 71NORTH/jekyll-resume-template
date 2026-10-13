@@ -3,9 +3,9 @@
 title: "Victor E. Huskie"
 name: "Victor E. Huskie's Portfolio in Jekyll"
 email: 
-url: "https://econ-691.github.io"
-baseurl: "/Jekyll-for-Job-Market"
-repository: "ECON-691/Jekyll-for-Job-Market"
+url: "https://71north.github.io"
+baseurl: "/jekyll-resume-template"
+repository: "71NORTH/jekyll-resume-template"
 header:
   image: /assets/images/banner-husky.jpg
 
